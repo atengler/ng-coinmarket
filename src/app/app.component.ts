@@ -10,16 +10,12 @@ import { CoinmarketService } from './coinmarket.service';
 })
 export class AppComponent {
   title = 'CoinMarket';
-  listings: Listings[];
   ticker: Ticker[];
 
   constructor(private coinmarketService: CoinmarketService) { }
 
   ngOnInit() {
-    this.listings = [new Listings()];
     this.ticker = [new Ticker()];
-
-    this.getListings();
     this.getTicker();
   }
 
