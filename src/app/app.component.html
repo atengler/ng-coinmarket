@@ -26,7 +26,41 @@
 <div class="container">
   <div class="row">
     <div class="col-lg">
-      <h1>Welcome to {{ title }}!</h1>
+      <h1 class="page-title">Welcome to {{title}}!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg">
+      <div>
+        <table class="table table-hover">
+          <caption>Overview</caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Market Cap</th>
+              <th scope="col">Price</th>
+              <th scope="col">Volume (24h)</th>
+              <th scope="col">Circulating Supply</th>
+              <th scope="col">Change (24h)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let datum of ticker.data">
+              <th scope="row">{{datum.name}}</th>
+              <td>${{datum.quotes.USD.market_cap | number:0}}</td>
+              <td>${{datum.quotes.USD.price | number:0}}$</td>
+              <td>${{datum.quotes.USD.volume_24h | number:0}}</td>
+              <td>{{datum.circulating_supply | number:0}} {{datum.symbol}}</td>
+              <td>{{datum.quotes.USD.percent_change_24h | number:0}}%</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6" class="text-center">Showing 20 / {{ticker.metadata ? ticker.metadata.num_cryptocurrencies : "?"}}</td>
+            </tr>
+            </tfoot>
+        </table>
+      </div>
     </div>
   </div>
 </div>
